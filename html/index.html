@@ -9,14 +9,14 @@
 </head>
 
 <body>
-    <header>
-        <h1>BELLA CAUSA</h1>
-        <h2>Belleza al rescate</h2>
+    <header class="encabezado">
+        <h1 class="titulo-principal">BELLA CAUSA</h1>
+        <h2 class="subtitulo">Belleza al rescate</h2>
         <div class="logo">
-            <img src="img" alt="Logo de Bella Causa (Gatito en el espejo)">
+            <img src="./assets/LOGO-BELLA CAUSA.png" alt="Logo de Bella Causa (Gatito en el espejo)">
         </div>
-        <nav>
-            <ul>
+        <nav class="menu">
+            <ul class="menu-lista">
                 <li>Inicio</li>
                 <li>Mascotas</li>
                 <li>Adopciones</li>
@@ -29,15 +29,16 @@
             </ul>
         </nav>
     </header>
-    <main>
-        <section id="hero">
+    <main class="contenido-principal">
+
+        <section class="hero">
             <h2>¡Bienvenidos a Bella Causa!</h2>
             <p>Descubre cómo puedes ayudar a las mascotas necesitadas y hacer una diferencia en sus vidas, a la vez te
                 puedes divertir y aprender mucho sobre belleza y cuidado personal.</p>
-            <a href="#adopciones" class="button">Adopta Ahora</a>
+            <a href="#adopciones" class="boton">Adopta Ahora</a>
 
-            <article>
-                <h1>Belleza con propósito</h1>
+            <article class="articulo">
+                <h2>Belleza con propósito</h2>
                 <p>
                     En Bella causa creemos que la verdadera belleza nace cuando hacemos el bien. Aquí
                     conectamos la pasión por la belleza con el rescate animal, inspirando a miles de personas a conocer,
@@ -46,13 +47,48 @@
                 </p>
                 <button>Conoce Más</button>
             </article>
+        </section>
+
+        <section id="adopciones" class="contacto">
+            <h3>Adopta una Mascota</h3>
+            <p>Explora nuestras mascotas disponibles para adopción y encuentra a tu nuevo mejor amigo.</p>
+            <a href="#adopciones" class="boton">Ver Mascotas</a>
+        </section>
+
+        <section class="comunidad">
+            <h2>Únete a Nuestra Comunidad</h2>
+            <form class="formulario-contacto" action="procesar_formulario.php" method="POST">
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Ej: María García" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="telefono">Teléfono:</label>
+                    <input type="tel" id="telefono" name="telefono" placeholder="Ej: +34 600 123 456" required
+                        pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" placeholder="correo@ejemplo.com" required minlength="8"
+                        maxlength="100">
+                </div>
+                <div class="form-group">
+                    <label for="mensaje">Mensaje:</label>
+                    <textarea id="mensaje" name="mensaje" placeholder="Escribe tu mensaje aquí..."></textarea>
+                </div>
+                <button type="submit">Enviar</button>
+            </form>
 
         </section>
     </main>
 
-    <body>
+    <footer class="pie-de-pagina">
+        <p>&copy; 2026 Bella Causa. Todos los derechos reservados.</p>
+    </footer>
 
 
-    </body>
+</body>
 
 </html> <!-- Cierra el documento HTML -->
