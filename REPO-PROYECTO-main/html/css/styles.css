@@ -1,0 +1,399 @@
+:root {
+    --ciruela: #5b2c3a;
+    --oscuro: #3f1d28;
+    --naranja: #ff8f4a;
+    --durazno: #ffc594;
+    --crema: #fff6e6;
+    --salmon: #f7a48b;
+    --rosa: #e42977;
+    --blanco: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background-color: var(--crema);
+    color: var(--oscuro);
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+h1, h2, h3 {
+    font-family: Georgia, serif;
+    margin: 0 0 12px;
+}
+
+section{
+    scroll-margin-top: 80px;
+}
+
+button {
+    font-family: inherit;
+    font-size: inherit;
+    cursor: pointer;
+}
+
+.encabezado {
+    background-color: var(--crema);
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    padding: 8px 24px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow:0 2px 10px rgba(0,0,0,0.15);
+}
+
+.logo-pequeno {
+    width: 60px;
+}
+
+.menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 8px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: var(--ciruela);
+    font-weight: bold;
+    padding: 8px 14px;
+    border-radius: 20px;
+}
+
+.menu a:hover {
+    background-color: var(--durazno);
+}
+
+#boton-menu {
+    display: none;
+}
+
+.boton {
+    display: inline-block;
+    background-color: var(--naranja);
+    color: var(--oscuro);
+    text-decoration: none;
+    font-weight: bold;
+    padding: 14px 30px;
+    border-radius: 30px;
+}
+
+.boton:hover {
+    background-color: var(--rosa);
+}
+
+.hero {
+    background-color: var(--durazno);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    padding: 70px 24px;
+}
+
+.hero-texto {
+    max-width: 520px;
+}
+
+.hero h1 {
+    font-size: 64px;
+    color: var(--ciruela);
+}
+
+.subtitulo {
+    display: inline-block;
+    background-color: var(--ciruela);
+    color: var(--crema);
+    padding: 6px 18px;
+    border-radius: 30px;
+    font-size: 20px;
+    margin: 10px 0 24px;
+}
+
+.bienvenida {
+    font-size: 30px; 
+}
+
+.marco-logo {
+    width: 300px;
+    background-color: var(--crema);
+    border: 12px solid var(--salmon);
+    border-radius: 150px 150px 20px 20px;
+    padding: 24px;
+    box-shadow: 12px 12px 0 var(--ciruela);
+}
+
+.marco-logo img {
+    width: 100%;
+    display: block;
+}
+
+.propuesta {
+    padding: 80px 24px;
+    text-align: center;
+}
+
+.articulo {
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.articulo h2 {
+    font-size: 40px;
+    color: var(--ciruela);
+}
+
+.articulo p {
+    font-family: Georgia, serif;
+    font-size: 21px;
+    margin-bottom: 28px;
+}
+
+.rescates {
+    background-color: var(--ciruela);
+    color: var(--crema);
+    padding: 80px 24px;
+    text-align: center;
+}
+
+.rescates h2 {
+    color: var(--durazno);
+    font-size: 44px;
+}
+
+.filtros {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 28px 0 16px;
+}
+
+.filtro {
+    background: none;
+    border: 2px solid var(--durazno);
+    color: var(--crema);
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-weight: bold;
+}
+
+.filtro.activo {
+    background-color: var(--durazno);
+    color: var(--oscuro);
+}
+
+#conteo {
+    color: var(--durazno);
+    font-weight: bold;
+}
+
+.lista-casos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 28px;
+    margin: 24px 0 40px;
+}
+
+.caso {
+    width: 280px;
+    background-color: var(--crema);
+    color: var(--oscuro);
+    border-radius: 24px;
+    overflow: hidden;
+    padding-bottom: 24px;
+}
+
+.foto {
+    position: relative;
+    height: 200px;
+    background-color: var(--durazno);
+    font-size: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.foto img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.etiqueta {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 4px 14px;
+    border-radius: 20px;
+}
+
+.etiqueta.rescate {
+    background-color: var(--rosa);
+    color: var(--blanco);
+}
+
+.etiqueta.disponible {
+    background-color: var(--naranja);
+    color: var(--oscuro);
+}
+
+.etiqueta.adoptado {
+    background-color: var(--ciruela);
+    color: var(--crema);
+}
+
+.caso h3 {
+    font-size: 28px;
+    margin: 16px 20px 0;
+}
+
+.caso p {
+    margin: 4px 20px 14px;
+}
+
+.caso .historia {
+    background-color: var(--salmon);
+    padding: 14px;
+    border-radius: 14px;
+    margin: 16px 20px 0;
+    text-align: left;
+}
+
+.oculto {
+    display: none;
+}
+
+.comunidad {
+    background-color: var(--salmon);
+    padding: 80px 24px;
+    text-align: center;
+}
+
+.comunidad h2 {
+    font-size: 40px;
+    margin-bottom: 30px;
+}
+
+.formulario-contacto {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: var(--crema);
+    padding: 32px;
+    border-radius: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    padding: 10px;
+    border: 2px solid var(--ciruela);
+    border-radius: 12px;
+}
+
+textarea {
+    min-height: 120px;
+}
+
+.enviar {
+    background-color: var(--rosa);
+    color: var(--blanco);
+    border: none;
+    padding: 14px;
+    border-radius: 30px;
+    font-weight: bold;
+}
+
+.enviar:hover {
+    background-color: var(--ciruela);
+}
+
+.mensaje-exito {
+    background-color: var(--durazno);
+    padding: 14px;
+    border-radius: 12px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.pie-de-pagina {
+    background-color: var(--oscuro);
+    color: var(--crema);
+    text-align: center;
+    padding: 24px;
+}
+
+.pie-de-pagina p {
+    margin: 0;
+}
+
+@media (max-width: 800px) {
+    #boton-menu {
+        display: block;
+        background-color: var(--ciruela);
+        color: var(--crema);
+        border: none;
+        padding: 10px 20px;
+        border-radius: 30px;
+        font-weight: bold;
+    }       
+}   
+
+.menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--crema);
+    padding: 10 px 24px 20px;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0. 15);
+}
+
+.menu.abierto {
+    display: block;
+}
+
+.menu ul {
+    flex-direction: column;
+}
+
+.hero {
+    flex-direction: column;
+    padding: 50px 24px;
+}
+
+.hero h1 {
+    font-size: 44px;
+}
+
