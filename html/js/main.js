@@ -77,3 +77,17 @@ setInterval(function () {
     botonSiguiente.click();
 }, 5000);   
 
+const botonesBlog = document.querySelectorAll(".boton-blog");
+
+botonesBlog.forEach(function (boton) {
+    boton.addEventListener("click", function () {
+        const textoCompleto = boton.nextElementSibling;
+        textoCompleto.classList.toggle("oculto");
+
+        if (textoCompleto.classList.contains("oculto")) {
+            boton.textContent = "Leer más";
+        } else {
+            boton.textContent = "Leer menos";
+        }
+    });
+});
