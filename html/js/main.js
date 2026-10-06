@@ -41,3 +41,39 @@ botonesFiltro.forEach(function (boton) {
 
 });
 
+const pista = document.getElementById("carrusel-pista");
+const botonAnterior = document.getElementById("btn-anterior");
+const botonSiguiente = document.getElementById("btn-siguiente");
+
+const totalSlides = document.querySelectorAll(".slide").length;
+let indiceActual = 0;
+
+ function mostrarSlide() {
+    const porcentaje = indiceActual * -100;
+    pista.style.transform = "translateX(" + porcentaje + "%)";
+}
+
+botonSiguiente.addEventListener("click", function () {
+    indiceActual = indiceActual + 1;
+
+    if (indiceActual >= totalSlides) {
+        indiceActual = 0;
+    }
+    mostrarSlide();
+});
+
+botonAnterior.addEventListener("click", function () {
+    indiceActual = indiceActual - 1;
+
+    if (indiceActual < 0) {
+        indiceActual = totalSlides - 1;
+    }
+
+    mostrarSlide();
+});
+
+
+setInterval(function () {
+    botonSiguiente.click();
+}, 5000);   
+

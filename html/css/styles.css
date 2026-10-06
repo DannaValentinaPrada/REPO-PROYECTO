@@ -276,6 +276,16 @@ button {
     text-align: left;
 }
 
+.caso {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.caso:hover {
+    transform:translateY(-10px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.25);
+}
+
+
 .oculto {
     display: none;
 }
@@ -397,3 +407,73 @@ textarea {
     font-size: 44px;
 }
 
+.carrusel {
+    width: 100%;
+}
+
+.carrusel-contenedor {
+    position:relative;
+    width: 100%;
+    height: 350px;
+    overflow: hidden;
+}
+
+.carrusel-pista {
+    display: flex;
+    height: 100%;
+    transition: transform 0.5s ease;
+}
+
+.slide {
+    position: relative;
+    min-width: 100%;
+    height: 100%;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.slide p {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 20px, 30px;
+    background: linear-gradient( to top, rgba (0, 0, 0, 0.65), transparent);
+    color: var(--blanco);
+    font-family: Georgia, serif;
+    font-style:italic;
+    font-size: 20px;
+    text-align: center;
+}
+
+.carrusel-boton  {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--rosa);
+    color: var(--blanco);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 18px;
+    z-index: 2;
+}
+
+.carrusel-boton.izquierda {
+    left: 16px;
+}
+
+.carrusel-boton.derecha {
+    right: 16px;
+}
+
+.carrusel-boton:hover {
+    background-color: var(--ciruela);
+}

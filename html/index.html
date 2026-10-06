@@ -27,6 +27,49 @@
         </nav>
     </header>
 
+    <section class="carrusel">
+        <div class="carrusel-contenedor">
+            <div class="carrusel-pista" id="carrusel-pista">
+
+            <div class="slide">
+                <img src="assets/CONEJO_BLANCO.jpg" alt="Belleza consciente">
+                <p>"La verdadera belleza no necesita hacer sufrir a nadie"</p>
+            </div>
+
+            <div class="slide">
+                <img src="./assets/PERRO_RESCATADO.jpg" alt="Belleza consciente">
+                <p>"Ser conscientes de nuestros actos es la base de una belleza responsable"</p>
+            </div>
+
+            <div class="slide">
+                <img src="./assets/PROTESTA_PACIFICA.jpg" alt="Belleza consciente">
+                <p>"Elegir productos cruelty-free también es un acto de amor hacia los animales"</p>
+            </div>
+
+            <div class="slide">
+                <img src="./assets/MANOS_AYUDA.jpg" alt="Belleza consciente">
+                <p>"La belleza no es solo apariencia, sino también compasión y respeto por la vida"</p>
+            </div>
+
+            <div class="slide">
+                <img src="./assets/VOLUNTARIOS_RESCATANDO.jpg" alt="Belleza consciente">
+                <p>"La verdadera belleza se encuentra escondida en las manos que ayudan a rescatar"</p>
+            </div>
+
+            <div class="slide">
+                <img src="./assets/ANTES_DESPUES.jpg" alt="Belleza consciente">
+                <p>"Al rescatar un animal no solo cambias su vida, sin querer también cambias la tuya"</p>
+            </div>
+            
+        <div>
+
+                <button id="btn-anterior" class="carrusel-boton izquierda">&#10094;</button>
+                <button id="btn-siguiente" class="carrusel-boton derecha">&#10095;</button>
+        
+
+        </div>
+    </section>
+
     <main>
 
         <section id="inicio" class="hero">
@@ -66,8 +109,8 @@
             <div class="filtros">
                 <button class="filtro activo" data-filtro="todos">Todos</button>
                 <button class="filtro" data-filtro="rescate">En rescate</button>
-                <button class="filtro" data-filtro="disponibles">En rescate</button>
-                <button class="filtro" data-filtro="adoptado">En rescate</button>
+                <button class="filtro" data-filtro="disponibles">Disponible</button>
+                <button class="filtro" data-filtro="adoptado">Adoptado</button>
             </div>
 
             <p id="conteo"></p>
@@ -76,7 +119,7 @@
 
                 <article class="caso" data-estado="rescate">
                     <div class="foto">
-                        <img src="./assets/mascota1.jpg" alt="Mascota 1">
+                        <img src="./assets/ROCKY.jpg" alt="ROCKY">
                         <span class="etiqueta rescate">En rescate</span>
                     </div>
                     <h3>ROCKY</h3>
@@ -88,7 +131,7 @@
 
                 <article class="caso" data-estado="disponible">
                     <div class="foto">
-                        <img src="./assets/mascota1.jpg" alt="Mascota 1">
+                        <img src="./assets/MILO.jpg" alt="MILO">
                         <span class="etiqueta disponible">Disponible</span>
                     </div>
                     <h3>MILO</h3>
@@ -100,7 +143,7 @@
 
                 <article class="caso" data-estado="adoptado">
                     <div class="foto">
-                        <img src="./assets/mascota1.jpg" alt="Mascota 1">
+                        <img src="./assets/CANELA.jpg" alt="CANELA">
                         <span class="etiqueta adoptado">Adoptado</span>
                     </div>
                     <h3>CANELA</h3>
