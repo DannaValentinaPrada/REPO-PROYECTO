@@ -48,7 +48,7 @@ const botonSiguiente = document.getElementById("btn-siguiente");
 const totalSlides = document.querySelectorAll(".slide").length;
 let indiceActual = 0;
 
- function mostrarSlide() {
+function mostrarSlide() {
     const porcentaje = indiceActual * -100;
     pista.style.transform = "translateX(" + porcentaje + "%)";
 }
@@ -75,7 +75,7 @@ botonAnterior.addEventListener("click", function () {
 
 setInterval(function () {
     botonSiguiente.click();
-}, 5000);   
+}, 5000);
 
 const botonesBlog = document.querySelectorAll(".boton-blog");
 
@@ -90,4 +90,26 @@ botonesBlog.forEach(function (boton) {
             boton.textContent = "Leer menos";
         }
     });
+});
+
+const gbVisor = document.getElementById("gb-visor");
+const gbFotoGrande = document.getElementById("gb-foto-grande");
+const gbCerrar = document.getElementById("gb-cerrar");
+const gbFotos = document.querySelectorAll(".gb-fotos img");
+
+gbFotos.forEach(function (foto) {
+    foto.addEventListener("click", function () {
+        gbFotoGrande.src = foto.src;
+        gbVisor.style.display = "flex";
+    });
+});
+
+gbCerrar.addEventListener("click", function () {
+    gbVisor.style.display = "none";
+});
+
+gbVisor.addEventListener("click", function (evento) {
+    if (evento.target === gbVisor) {
+        gbVisor.style.display = "none";
+    }
 });

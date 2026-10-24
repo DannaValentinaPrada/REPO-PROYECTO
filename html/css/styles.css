@@ -532,7 +532,7 @@ textarea {
     left: 0;
     right: 0;
     margin: 0;
-    padding: 20px, 30px;
+    padding: 20px 30px;
     background: linear-gradient( to top, rgba (0, 0, 0, 0.65), transparent);
     color: var(--blanco);
     font-family: Georgia, serif;
@@ -565,4 +565,66 @@ textarea {
 
 .carrusel-boton:hover {
     background-color: var(--ciruela);
+}
+
+.gb-galeria {
+    max-width: 1000px;
+    margin: 40px auto 0;
+}
+
+.gb-bloque {
+    margin-bottom: 30px;
+}
+
+.gb-fotos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.gb-fotos img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gb-fotos img:hover {
+    transform: scale(1.05);
+}
+
+#gb-visor {
+    display: none;
+    position:fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0. 85);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#gb-visor img {
+    max-width: 90%;
+    max-height: 85%;
+    border-radius: 10px;
+}
+
+#gb-cerrar {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 40px;
+    color: var(--blanco);
+    cursor: pointer;
+}
+
+.blog-foto img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
