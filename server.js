@@ -58,4 +58,22 @@ app.post('/api/contacto', async (req, res) => {
     }
 });
 
+const mascotaSchema = new mongoose.Schema({
+  nombre: String,
+  tipo: String,
+  estado: String,
+  foto: String,
+  historia: String,
+  fechaRegistro: { type: Date, default: Date.now }
+});
 
+const Mascota = mongoose.model('Mascota', mascotaSchema);
+
+app.get('/api/mascotas', async (req, res) => {
+  try {
+    const mascotas = await Mascota.find();
+    res.json(mascotas);
+  } catch (error) {
+    res.status(500).json({ mensaje: 'Error al obtener las mascotas', error: error.message });
+  }
+});
