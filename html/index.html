@@ -60,14 +60,14 @@
                     <img src="./assets/ANTES_DESPUES.jpg" alt="Belleza consciente">
                     <p>"Al rescatar un animal no solo cambias su vida, sin querer también cambias la tuya"</p>
                 </div>
-            
+
             </div>
 
-        <button id="btn-anterior" class="carrusel-boton izquierda">&#10094;</button>
-        <button id="btn-siguiente" class="carrusel-boton derecha">&#10095;</button>
+            <button id="btn-anterior" class="carrusel-boton izquierda">&#10094;</button>
+            <button id="btn-siguiente" class="carrusel-boton derecha">&#10095;</button>
 
-    </div>
-</section>    
+        </div>
+    </section>
 
     <main>
 
@@ -163,8 +163,8 @@
             <div class="blog-grid">
 
                 <article class="blog-card">
-                    <div class="blog-foto"> 
-                        <img src="./assets/cuidado facial 1.jpg" alt="Cuidado Facial">
+                    <div class="blog-foto">
+                        <img src="./assets/Cuidado facial 1.jpg" alt="Cuidado Facial">
                     </div>
                     <span class="blog-categoria">Cuidado Facial</span>
                     <h3>Rutina facial básica en 3 pasos</h3>
@@ -191,7 +191,7 @@
                 </article>
 
                 <article class="blog-card">
-                    <div class="blog-foto"> 
+                    <div class="blog-foto">
                         <img src="./assets/cuidado corporal 1.jpg" alt="Cuidado Corporal">
                     </div>
                     <span class="blog-categoria">Cuidado Corporal</span>
@@ -213,10 +213,11 @@
 
                         La constancia importa más que el producto: aplicar una crema sencilla todos los días da mejores
                         resultados que usar una crema cara solo de vez en cuando.
+                    </p>
                 </article>
 
                 <article class="blog-card">
-                    <div class="blog-foto"> 
+                    <div class="blog-foto">
                         <img src="./assets/outfits 1.jpg" alt="Ideas para outfits">
                     </div>
                     <span class="blog-categoria">Outfits</span>
@@ -243,7 +244,7 @@
                 </article>
 
                 <article class="blog-card">
-                    <div class="blog-foto"> 
+                    <div class="blog-foto">
                         <img src="./assets/maquillaje 1.jpg" alt="Maquillaje Natural">
                     </div>
                     <span class="blog-categoria">Maquillaje</span>
@@ -273,7 +274,7 @@
                 </article>
 
                 <article class="blog-card">
-                    <div class="blog-foto"> 
+                    <div class="blog-foto">
                         <img src="./assets/cuidado capilar 1.jpg" alt="Cuidado Capilar">
                     </div>
                     <span class="blog-categoria">Cuidado Capilar</span>
@@ -297,6 +298,7 @@
 
                         Cuida también desde adentro: una buena alimentación e hidratación con agua se reflejan
                         directamente en la salud de tu cabello.
+                    </p>
 
                 </article>
 
@@ -353,8 +355,8 @@
                         <img src="./assets/cuidado capilar 4.jpg" alt="Cuidado Capilar">
                         <img src="./assets/cuidado capilar 5.jpg" alt="Cuidado Capilar">
                     </div>
-
- 
+                </div>
+            </div>
         </section>
 
         <section id="comunidad" class="comunidad">
@@ -401,44 +403,44 @@
     <script src="js/main.js"></script>
 
     <script>
-  document.getElementById('formulario-contacto').addEventListener('submit', async (e) => {
-    e.preventDefault(); 
+        document.getElementById('formulario-contacto').addEventListener('submit', async (e) => {
+            e.preventDefault();
 
-    const datosFormulario = {
-      nombre: document.getElementById('nombre').value,
-      telefono: document.getElementById('telefono').value,
-      email: document.getElementById('email').value,
-      mensaje: document.getElementById('mensaje').value
-    };
+            const datosFormulario = {
+                nombre: document.getElementById('nombre').value,
+                telefono: document.getElementById('telefono').value,
+                email: document.getElementById('email').value,
+                mensaje: document.getElementById('mensaje').value
+            };
 
-    
-    const mensajeExito = document.getElementById('exito');
 
-    try {
-      const respuesta = await fetch('http://localhost:3000/api/contacto', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(datosFormulario)
-      });
+            const mensajeExito = document.getElementById('exito');
 
-      const resultado = await respuesta.json();
-      
-      if (respuesta.ok) {
-        mensajeExito.textContent = "¡Gracias! Tus datos han sido guardados con éxito en la base de datos.";
-        mensajeExito.classList.remove('oculto');
-        
-        document.getElementById('formulario-contacto').reset();
-      } else {
-        alert('Hubo un problema en el servidor: ' + resultado.mensaje);
-      }
-    } catch (error) {
-      console.error('Error de conexión:', error);
-      alert('No se pudo conectar con el servidor. Asegúrate de que tu terminal azul tenga corriendo el comando node server.js');
-    }
-  });
-</script>
+            try {
+                const respuesta = await fetch('http://localhost:3000/api/contacto', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(datosFormulario)
+                });
+
+                const resultado = await respuesta.json();
+
+                if (respuesta.ok) {
+                    mensajeExito.textContent = "¡Gracias! Tus datos han sido guardados con éxito en la base de datos.";
+                    mensajeExito.classList.remove('oculto');
+
+                    document.getElementById('formulario-contacto').reset();
+                } else {
+                    alert('Hubo un problema en el servidor: ' + resultado.mensaje);
+                }
+            } catch (error) {
+                console.error('Error de conexión:', error);
+                alert('No se pudo conectar con el servidor. Asegúrate de que tu terminal azul tenga corriendo el comando node server.js');
+            }
+        });
+    </script>
 
 
 </body>
 
-</html> 
+</html>
