@@ -465,35 +465,35 @@ textarea {
         padding: 10px 20px;
         border-radius: 30px;
         font-weight: bold;
-    }       
-}   
+    }
 
-.menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background-color: var(--crema);
-    padding: 10 px 24px 20px;
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0. 15);
-}
+    .menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: var(--crema);
+        padding: 10px 24px 20px;
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+    }
 
-.menu.abierto {
-    display: block;
-}
+    .menu.abierto {
+        display: block;
+    }
 
-.menu ul {
-    flex-direction: column;
-}
+    .menu ul {
+        flex-direction: column;
+    }
 
-.hero {
-    flex-direction: column;
-    padding: 50px 24px;
-}
+    .hero {
+        flex-direction: column;
+        padding: 50px 24px;
+    }
 
-.hero h1 {
-    font-size: 44px;
+    .hero h1 {
+        font-size: 44px;
+    }
 }
 
 .carrusel {
@@ -533,7 +533,7 @@ textarea {
     right: 0;
     margin: 0;
     padding: 20px 30px;
-    background: linear-gradient( to top, rgba (0, 0, 0, 0.65), transparent);
+    background: linear-gradient( to top, rgba(0, 0, 0, 0.65), transparent);
     color: var(--blanco);
     font-family: Georgia, serif;
     font-style:italic;
