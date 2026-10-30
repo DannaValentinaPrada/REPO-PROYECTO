@@ -359,7 +359,7 @@
 
         <section id="comunidad" class="comunidad">
             <h2>Únete a Nuestra Comunidad</h2>
-            <form id="formulario" class="formulario-contacto" action="procesar_formulario.php" method="POST">
+            <form id="formulario-contacto" class="formulario-contacto" method="POST">
                 <div class="form-group">
                     <label for="nombre">Nombre:</label>
                     <input type="text" id="nombre" name="nombre" placeholder="Ej: María García" required>
@@ -367,8 +367,7 @@
 
                 <div class="form-group">
                     <label for="telefono">Teléfono:</label>
-                    <input type="tel" id="telefono" name="telefono" placeholder="Ej: +34 600 123 456" required
-                        pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+                    <input type="tel" id="telefono" name="telefono" placeholder="Ej: +34 600 123 456" required>
                 </div>
 
                 <div class="form-group">
@@ -401,7 +400,45 @@
 
     <script src="js/main.js"></script>
 
+    <script>
+  document.getElementById('formulario-contacto').addEventListener('submit', async (e) => {
+    e.preventDefault(); 
+
+    const datosFormulario = {
+      nombre: document.getElementById('nombre').value,
+      telefono: document.getElementById('telefono').value,
+      email: document.getElementById('email').value,
+      mensaje: document.getElementById('mensaje').value
+    };
+
+    
+    const mensajeExito = document.getElementById('exito');
+
+    try {
+      const respuesta = await fetch('http://localhost:3000/api/contacto', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(datosFormulario)
+      });
+
+      const resultado = await respuesta.json();
+      
+      if (respuesta.ok) {
+        mensajeExito.textContent = "¡Gracias! Tus datos han sido guardados con éxito en la base de datos.";
+        mensajeExito.classList.remove('oculto');
+        
+        document.getElementById('formulario-contacto').reset();
+      } else {
+        alert('Hubo un problema en el servidor: ' + resultado.mensaje);
+      }
+    } catch (error) {
+      console.error('Error de conexión:', error);
+      alert('No se pudo conectar con el servidor. Asegúrate de que tu terminal azul tenga corriendo el comando node server.js');
+    }
+  });
+</script>
+
 
 </body>
 
-</html> <!-- Cierra el documento HTML -->
+</html> 
