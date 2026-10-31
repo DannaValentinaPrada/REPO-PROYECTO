@@ -628,3 +628,18 @@ textarea {
     height: 100%;
     object-fit: cover;
 }
+
+.boton-oscuro {
+    background-color: var(--ciruela);
+    color: var(--crema);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.boton-oscuro:hover {
+    background-color: var(--rosa);
+}
