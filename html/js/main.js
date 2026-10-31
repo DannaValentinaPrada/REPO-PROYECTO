@@ -7,39 +7,102 @@ botonMenu.addEventListener("click", function () {
 });
 
 const botonesFiltro = document.querySelectorAll(".filtro");
-const casos = document.querySelectorAll(".caso");
+const listaCasos = document.querySelector(".lista-casos");
+const conteo = document.getElementById("conteo");
+const API = "http://localhost:3000";
 
-botonesFiltro.forEach(function (boton) {
+let todasLasMascotas = [];
+let filtroActual = "todos";
 
-    boton.addEventListener("click", function () {
-        const filtroSeleccionado = boton.dataset.filtro;
-        mostrarCasos(filtroSeleccionado);
+const textosEstado = {
+    rescate: "En rescate",
+    disponible: "Disponible",
+    adoptado: "Adoptado"
+};
 
-        botonesFiltro.forEach(function (boton) {
-            boton.classList.remove("activo");
+function dibujarMascotas() {
+    listaCasos.innerHTML = "";
 
-
-        });
-
-        boton.classList.add("activo");
-
-        casos.forEach(function (caso) {
-
-            const estado = caso.dataset.estado;
-
-            if (filtroSeleccionado === "todos" || estado === filtroSeleccionado
-            ) {
-                caso.style.display = "";
-            } else {
-                caso.style.display = "none";
-
-            }
-
-        });
-
+    const visibles = todasLasMascotas.filter(function (mascota) {
+        return filtroActual === "todos" || mascota.estado === filtroActual;
     });
 
+    visibles.forEach(function (mascota) {
+        const tarjeta = document.createElement("article");
+        tarjeta.className = "caso";
+        tarjeta.dataset.estado = mascota.estado;
+
+        const divFoto = document.createElement("div");
+        divFoto.className = "foto";
+
+        const imagen = document.createElement("img");
+        imagen.src = mascota.foto;
+        imagen.alt = mascota.nombre;
+
+        const etiqueta = document.createElement("span");
+        etiqueta.className = "etiqueta " + mascota.estado;
+        etiqueta.textContent = textosEstado[mascota.estado] || mascota.estado;
+
+        divFoto.append(imagen, etiqueta);
+
+        const titulo = document.createElement("h3");
+        titulo.textContent = mascota.nombre;
+
+        const tipo = document.createElement("p");
+        tipo.textContent = mascota.tipo;
+
+        const botonHistoria = document.createElement("button");
+        botonHistoria.className = "boton-oscuro boton-historia";
+        botonHistoria.textContent = "Ver su historia";
+
+        const historia = document.createElement("p");
+        historia.className = "historia oculto";
+        historia.textContent = mascota.historia;
+
+        botonHistoria.addEventListener("click", function () {
+            historia.classList.toggle("oculto");
+            if (historia.classList.contains("oculto")) {
+                botonHistoria.textContent = "Ver su historia";
+            } else {
+                botonHistoria.textContent = "Ocultar historia";
+            }
+        });
+
+        tarjeta.append(divFoto, titulo, tipo, botonHistoria, historia);
+        listaCasos.appendChild(tarjeta);
+    });
+
+    if (visibles.length === 1) {
+        conteo.textContent = "1 mascota encontrada";
+    } else {
+        conteo.textContent = visibles.length + " mascotas encontradas";
+    }
+}
+
+async function cargarMascotas() {
+    try {
+        const respuesta = await fetch(API + "/api/mascotas");
+        todasLasMascotas = await respuesta.json();
+        dibujarMascotas();
+    } catch (error) {
+        listaCasos.textContent = "No pudimos cargar las mascotas en este momento.";
+    }
+}
+
+botonesFiltro.forEach(function (boton) {
+    boton.addEventListener("click", function () {
+        filtroActual = boton.dataset.filtro;
+
+        botonesFiltro.forEach(function (otroBoton) {
+            otroBoton.classList.remove("activo");
+        });
+        boton.classList.add("activo");
+
+        dibujarMascotas();
+    });
 });
+
+cargarMascotas();
 
 const pista = document.getElementById("carrusel-pista");
 const botonAnterior = document.getElementById("btn-anterior");
