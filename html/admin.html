@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administrador - Bella Causa</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
     <main class="admin">
         <h1>Panel de administrador</h1>
@@ -21,13 +23,47 @@
         </section>
 
         <section id="zona-panel" class="oculto">
-            <p>Sesión iniciada.</p>
             <button id="boton-salir" class="boton-oscuro">Cerrar sesión</button>
+
+            <h2>Agregar una mascota</h2>
+            <form id="formulario-mascota">
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" required>
+
+                <label for="tipo">Tipo</label>
+                <select id="tipo" required>
+                    <option value="Canino">Canino</option>
+                    <option value="Felino">Felino</option>
+                    <option value="Otro">Otro</option>
+                </select>
+
+                <label for="estado">Estado</label>
+                <select id="estado" required>
+                    <option value="rescate">En rescate</option>
+                    <option value="disponible">Disponible</option>
+                    <option value="adoptado">Adoptado</option>
+                </select>
+
+                <label for="historia">Historia</label>
+                <textarea id="historia" rows="5" required></textarea>
+
+                <label for="foto">Foto</label>
+                <input type="file" id="foto" accept="image/*" required>
+
+                <button type="submit" class="boton-oscuro">Guardar mascota</button>
+                <p id="mensaje-mascota"></p>
+            </form>
+
+            <h2>Mascotas publicadas</h2>
+            <ul id="lista-mascotas" class="lista-admin"></ul>
         </section>
+
+
 
         <a href="index.html">Volver a la página</a>
     </main>
 
     <script src="js/admin.js"></script>
 </body>
+
 </html>

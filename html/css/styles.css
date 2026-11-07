@@ -665,3 +665,32 @@ textarea {
     font-size: 16px;
     font-family: inherit;
 }
+
+.lista-admin {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.lista-admin li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background-color: var(--blanco);
+    border-radius: 16px;
+    padding: 10px 14px;
+}
+
+.lista-admin img {
+    width: 56px;
+    height: 56px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.lista-admin span {
+    flex: 1;
+    font-weight: bold;
+}
