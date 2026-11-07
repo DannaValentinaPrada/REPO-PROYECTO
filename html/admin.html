@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrador - Bella Causa</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <main class="admin">
+        <h1>Panel de administrador</h1>
+
+        <section id="zona-login">
+            <h2>Iniciar sesión</h2>
+            <form id="formulario-login">
+                <label for="clave">Clave de administrador</label>
+                <input type="password" id="clave" required>
+                <button type="submit" class="boton-oscuro">Entrar</button>
+                <p id="mensaje-login"></p>
+            </form>
+        </section>
+
+        <section id="zona-panel" class="oculto">
+            <p>Sesión iniciada.</p>
+            <button id="boton-salir" class="boton-oscuro">Cerrar sesión</button>
+        </section>
+
+        <a href="index.html">Volver a la página</a>
+    </main>
+
+    <script src="js/admin.js"></script>
+</body>
+</html>

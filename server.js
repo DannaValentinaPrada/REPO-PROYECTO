@@ -8,7 +8,7 @@ const cors = require('cors');
 const app = express();
 const PORT = 3000;
 
-app.use(express.json());
+app.use(express.json({ limit: '10mb' }));
 app.use(cors());
 
 
@@ -75,5 +75,48 @@ app.get('/api/mascotas', async (req, res) => {
     res.json(mascotas);
   } catch (error) {
     res.status(500).json({ mensaje: 'Error al obtener las mascotas', error: error.message });
+  }
+});
+
+const CLAVE_ADMIN = process.env.CLAVE_ADMIN;
+
+
+function verificarAdmin(req, res, next) {
+  if (!CLAVE_ADMIN || req.headers['clave'] !== CLAVE_ADMIN) {
+    return res.status(401).json({ mensaje: 'Clave de administrador incorrecta' });
+  }
+  next();
+}
+
+
+app.post('/api/admin/login', verificarAdmin, (req, res) => {
+  res.json({ ok: true });
+});
+
+
+app.post('/api/mascotas', verificarAdmin, async (req, res) => {
+  try {
+    const nuevaMascota = new Mascota({
+      nombre: req.body.nombre,
+      tipo: req.body.tipo,
+      estado: req.body.estado,
+      foto: req.body.foto,
+      historia: req.body.historia
+    });
+
+    const guardada = await nuevaMascota.save();
+    res.status(201).json(guardada);
+  } catch (error) {
+    res.status(500).json({ mensaje: 'Error al guardar la mascota', error: error.message });
+  }
+});
+
+
+app.delete('/api/mascotas/:id', verificarAdmin, async (req, res) => {
+  try {
+    await Mascota.findByIdAndDelete(req.params.id);
+    res.json({ mensaje: 'Mascota eliminada' });
+  } catch (error) {
+    res.status(500).json({ mensaje: 'Error al eliminar la mascota', error: error.message });
   }
 });
