@@ -16,10 +16,10 @@
 
             <ul>
                 <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#seccion-mascotas" onclick="filtrarMenu('todos')">Mascotas</a></li>
-                <li><a href="#seccion-mascotas" onclick="filtrarMenu('disponible')">Adopciones</a></li>
+                <li><a href="#seccion-mascotas" onclick="activarFiltroDesdeMenu('todos')">Mascotas</a></li>
+                <li><a href="#seccion-mascotas" onclick="activarFiltroDesdeMenu('disponible')">Adopciones</a></li>
                 <li><a href="#adopciones">Fundaciones</a></li>
-                <li><a href="#seccion-mascotas" onclick="filtrarMenu('adoptado')" >Historias</a></li>
+                <li><a href="#seccion-mascotas" onclick="activarFiltroDesdeMenu('adoptado')" >Historias</a></li>
                 <li><a href="#belleza">Blog</a></li>
                 <li><a href="#propuesta">Sobre Nosotros</a></li>
                 <li><a href="#comunidad">Contacto</a></li>
@@ -449,24 +449,16 @@
 </script>
 
 <script>
-  function filtrarMenu(categoria) {
-    // 1. Buscamos todas las tarjetas de mascotas en la página
-    var tarjetas = document.querySelectorAll('.tarjeta-mascota');
+  function activarFiltroDesdeMenu(valorFiltro) {
+    // Busca el botón original de tu página que tenga ese data-filtro
+    var botonOriginal = document.querySelector('.filtro[data-filtro="' + valorFiltro + '"]');
     
-    // 2. Recorremos cada tarjeta para decidir si la mostramos o la ocultamos
-    tarjetas.forEach(function(tarjeta) {
-      if (categoria === 'todos') {
-        tarjeta.style.display = 'flex'; // Muestra todo
-      } else {
-        // Compara si la tarjeta tiene la clase correspondiente (disponible, adoptado, en-rescate)
-        if (tarjeta.classList.contains(categoria)) {
-          tarjeta.style.display = 'flex';
-        } else {
-          tarjeta.style.display = 'none';
-        }
-      }
-    });
+    // Si lo encuentra, simula un clic en él para usar tu propio código
+    if (botonOriginal) {
+      botonOriginal.click();
+    }
   }
+
 </script>
 
 </body>
