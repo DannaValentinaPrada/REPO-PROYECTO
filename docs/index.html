@@ -96,13 +96,19 @@
                     compartir y apoyar historias que merecen una segunda oportunidad. Juntos construimos una comunidad
                     donde cada acción, por pequeña que parezca, puede cambiar una vida.
                 </p>
-                <p>
-                    <strong>¿Cómo funciona? En Bella Causa promovemos marcas y hábitos de belleza cruelty-free (libres de crueldad animal) mientras damos visibilidad gratuita a refugios independientes. Al aprender sobre cuidado consciente y compartir nuestras historias, nos ayudas a conectar a cientos de mascotas rescatadas con familias amorosas y donantes.</strong>
-                </p>
+               
+                <!-- Este es el cuadro que estará oculto al principio -->
+<div id="info-proposito" style="display: none; margin-top: 15px; margin-bottom: 20px;">
+  <p>
+    <strong>¿Cómo funciona?</strong> En Bella Causa promovemos marcas y hábitos de belleza <em>cruelty-free</em> (libres de crueldad animal) mientras damos visibilidad gratuita a refugios independientes. Al aprender sobre cuidado consciente y compartir nuestras historias, nos ayudas a conectar a cientos de mascotas rescatadas con familias amorosas y donantes.
+  </p>
+</div>
 
-                
-                <a href="#propuesta" class="boton">Conoce Más</a>
-                <button id="boton-conoce" class="boton-oscuro">Conoce Más</button>
+<!-- Este es el nuevo botón que activa el despliegue -->
+<button id="btn-proposito" onclick="toggleProposito()" class="boton-oscuro" style="margin-top: 10px;">
+  Conoce Más
+</button>
+
             </article>
         </section>
 
@@ -408,21 +414,39 @@
         });
     </script>
 
-<button id="chat-boton" aria-label="Abrir el asistente virtual">💬</button>
+    <button id="chat-boton" aria-label="Abrir el asistente virtual">💬</button>
 
-<div id="chat-ventana" class="oculto">
-    <div id="chat-encabezado">
-        <span>Asistente Bella Causa</span>
-        <button id="chat-cerrar" aria-label="Cerrar el chat">✕</button>
+    <div id="chat-ventana" class="oculto">
+        <div id="chat-encabezado">
+            <span>Asistente Bella Causa</span>
+            <button id="chat-cerrar" aria-label="Cerrar el chat">✕</button>
+        </div>
+        <div id="chat-mensajes"></div>
+        <form id="chat-formulario">
+            <input type="text" id="chat-entrada" placeholder="Escribe tu pregunta..." maxlength="500" autocomplete="off"
+                required>
+            <button type="submit">Enviar</button>
+        </form>
     </div>
-    <div id="chat-mensajes"></div>
-    <form id="chat-formulario">
-        <input type="text" id="chat-entrada" placeholder="Escribe tu pregunta..." maxlength="500" autocomplete="off" required>
-        <button type="submit">Enviar</button>
-    </form>
-</div>
 
-<script src="js/chat.js"></script>
+    <script src="js/chat.js"></script>
+
+    <script>
+  function toggleProposito() {
+    // 1. Buscamos el cuadro de texto oculto y el botón por su ID
+    var cajaTexto = document.getElementById("info-proposito");
+    var boton = document.getElementById("btn-proposito");
+
+    // 2. Revisamos si el texto está oculto ("none")
+    if (cajaTexto.style.display === "none") {
+      cajaTexto.style.display = "block"; // Lo hacemos visible
+      boton.innerText = "Mostrar menos"; // Cambiamos el texto del botón
+    } else {
+      cajaTexto.style.display = "none";  // Lo volvemos a ocultar
+      boton.innerText = "Conoce Más";    // Regresamos el botón a su texto original
+    }
+  }
+</script>
 
 </body>
 
