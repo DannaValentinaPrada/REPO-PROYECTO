@@ -10,6 +10,7 @@ const cors = require('cors');
 
 const app = express();
 const PORT = 3000;
+app.set('trust proxy', 1);
 
 app.use(express.json({ limit: '10mb' }));
 app.use(cors());
@@ -24,9 +25,8 @@ app.get('/', (req, res) => {
   res.send('¡El servidor de Node.js está corriendo perfectamente!');
 });
 
-app.listen(PORT, () => {
-  console.log(`Servidor escuchando en http://localhost:${PORT}`);
-});
+const PUERTO_SERVIDOR = process.env.PORT || 3000;
+app.listen(PUERTO_SERVIDOR, () => console.log('Servidor escuchando en el puerto ' + PUERTO_SERVIDOR));
 
 
 const contactoSchema = new mongoose.Schema({
