@@ -16,10 +16,10 @@
 
             <ul>
                 <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#adopciones">Mascotas</a></li>
-                <li><a href="#adopciones">Adopciones</a></li>
+                <li><a href="#seccion-mascotas" onclick="filtrarMenu('todos')">Mascotas</a></li>
+                <li><a href="#seccion-mascotas" onclick="filtrarMenu('disponible')">Adopciones</a></li>
                 <li><a href="#adopciones">Fundaciones</a></li>
-                <li><a href="#adopciones">Historias</a></li>
+                <li><a href="#seccion-mascotas" onclick="filtrarMenu('adoptado')" >Historias</a></li>
                 <li><a href="#belleza">Blog</a></li>
                 <li><a href="#propuesta">Sobre Nosotros</a></li>
                 <li><a href="#comunidad">Contacto</a></li>
@@ -112,7 +112,7 @@
             </article>
         </section>
 
-        <section id="adopciones" class="rescates">
+        <section id="seccion-mascotas" class="rescates">
             <h3>Adopta una Mascota</h3>
             <p>Explora nuestras mascotas disponibles para adopción y encuentra a tu nuevo mejor amigo.</p>
 
@@ -445,6 +445,27 @@
       cajaTexto.style.display = "none";  // Lo volvemos a ocultar
       boton.innerText = "Conoce Más";    // Regresamos el botón a su texto original
     }
+  }
+</script>
+
+<script>
+  function filtrarMenu(categoria) {
+    // 1. Buscamos todas las tarjetas de mascotas en la página
+    var tarjetas = document.querySelectorAll('.tarjeta-mascota');
+    
+    // 2. Recorremos cada tarjeta para decidir si la mostramos o la ocultamos
+    tarjetas.forEach(function(tarjeta) {
+      if (categoria === 'todos') {
+        tarjeta.style.display = 'flex'; // Muestra todo
+      } else {
+        // Compara si la tarjeta tiene la clase correspondiente (disponible, adoptado, en-rescate)
+        if (tarjeta.classList.contains(categoria)) {
+          tarjeta.style.display = 'flex';
+        } else {
+          tarjeta.style.display = 'none';
+        }
+      }
+    });
   }
 </script>
 
