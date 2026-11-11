@@ -9,7 +9,7 @@ botonMenu.addEventListener("click", function () {
 const botonesFiltro = document.querySelectorAll(".filtro");
 const listaCasos = document.querySelector(".lista-casos");
 const conteo = document.getElementById("conteo");
-const API = "http://localhost:3000";
+const API = "https://bella-causa-api.onrender.com";
 
 let todasLasMascotas = [];
 let filtroActual = "todos";

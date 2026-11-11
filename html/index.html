@@ -379,7 +379,7 @@
             const mensajeExito = document.getElementById('exito');
 
             try {
-                const respuesta = await fetch('http://localhost:3000/api/contacto', {
+                const respuesta = await fetch('https://bella-causa-api.onrender.com/api/contacto', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(datosFormulario)
@@ -402,6 +402,21 @@
         });
     </script>
 
+<button id="chat-boton" aria-label="Abrir el asistente virtual">💬</button>
+
+<div id="chat-ventana" class="oculto">
+    <div id="chat-encabezado">
+        <span>Asistente Bella Causa</span>
+        <button id="chat-cerrar" aria-label="Cerrar el chat">✕</button>
+    </div>
+    <div id="chat-mensajes"></div>
+    <form id="chat-formulario">
+        <input type="text" id="chat-entrada" placeholder="Escribe tu pregunta..." maxlength="500" autocomplete="off" required>
+        <button type="submit">Enviar</button>
+    </form>
+</div>
+
+<script src="js/chat.js"></script>
 
 </body>
 

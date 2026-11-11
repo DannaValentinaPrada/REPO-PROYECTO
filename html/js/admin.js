@@ -1,10 +1,59 @@
-const API = "http://localhost:3000";
+const API = "https://bella-causa-api.onrender.com";
 
 const zonaLogin = document.getElementById("zona-login");
 const zonaPanel = document.getElementById("zona-panel");
 const formularioLogin = document.getElementById("formulario-login");
 const mensajeLogin = document.getElementById("mensaje-login");
 const botonSalir = document.getElementById("boton-salir");
+
+const listaMascotas = document.getElementById("lista-mascotas");
+
+async function cargarLista() {
+    try {
+        const respuesta = await fetch(API + "/api/mascotas");
+        const mascotas = await respuesta.json();
+
+        listaMascotas.innerHTML = "";
+
+        mascotas.forEach(function (mascota) {
+            const item = document.createElement("li");
+
+            const imagen = document.createElement("img");
+            imagen.src = mascota.foto;
+            imagen.alt = mascota.nombre;
+
+            const texto = document.createElement("span");
+            texto.textContent = mascota.nombre + " (" + mascota.estado + ")";
+
+            const botonEliminar = document.createElement("button");
+            botonEliminar.className = "boton-oscuro";
+            botonEliminar.textContent = "Eliminar";
+
+            botonEliminar.addEventListener("click", async function () {
+                const confirmado = confirm("¿Seguro que quieres eliminar a " + mascota.nombre + "?");
+                if (!confirmado) {
+                    return;
+                }
+
+                const respuestaBorrar = await fetch(API + "/api/mascotas/" + mascota._id, {
+                    method: "DELETE",
+                    headers: { "clave": sessionStorage.getItem("claveAdmin") }
+                });
+
+                if (respuestaBorrar.ok) {
+                    cargarLista();
+                } else {
+                    alert("No se pudo eliminar. Revisa tu sesión e intenta de nuevo.");
+                }
+            });
+
+            item.append(imagen, texto, botonEliminar);
+            listaMascotas.appendChild(item);
+        });
+    } catch (error) {
+        listaMascotas.textContent = "No se pudo cargar la lista.";
+    }
+}
 
 function mostrarPanel() {
     zonaLogin.classList.add("oculto");
@@ -14,6 +63,7 @@ function mostrarPanel() {
 function mostrarLogin() {
     zonaPanel.classList.add("oculto");
     zonaLogin.classList.remove("oculto");
+    cargarLista();
 }
 
 formularioLogin.addEventListener("submit", async function (evento) {
@@ -107,6 +157,7 @@ formularioMascota.addEventListener("submit", async function (evento) {
         if (respuesta.ok) {
             formularioMascota.reset();
             mensajeMascota.textContent = "¡Mascota guardada con éxito!";
+            cargarLista();
         } else {
             mensajeMascota.textContent = "No se pudo guardar. Revisa tu sesión e intenta de nuevo.";
         }
