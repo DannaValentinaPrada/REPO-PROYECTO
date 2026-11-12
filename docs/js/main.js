@@ -176,3 +176,77 @@ gbVisor.addEventListener("click", function (evento) {
         gbVisor.style.display = "none";
     }
 });
+
+function toggleProposito() {
+    // 1. Buscamos el cuadro de texto oculto y el botón por su ID
+    var cajaTexto = document.getElementById("info-proposito");
+    var boton = document.getElementById("btn-proposito");
+
+    // 2. Revisamos si el texto está oculto ("none")
+    if (cajaTexto.style.display === "none") {
+        cajaTexto.style.display = "block"; // Lo hacemos visible
+        boton.innerText = "Mostrar menos"; // Cambiamos el texto del botón
+    } else {
+        cajaTexto.style.display = "none";  // Lo volvemos a ocultar
+        boton.innerText = "Conoce Más";    // Regresamos el botón a su texto original
+    }
+}
+
+function activarFiltroDesdeMenu(valorFiltro) {
+    // Busca el botón original de tu página que tenga ese data-filtro
+    var botonOriginal = document.querySelector('.filtro[data-filtro="' + valorFiltro + '"]');
+
+    // Si lo encuentra, simula un clic en él para usar tu propio código
+    if (botonOriginal) {
+        botonOriginal.click();
+    }
+}
+
+document.getElementById('formulario-contacto').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const datosFormulario = {
+        nombre: document.getElementById('nombre').value,
+        telefono: document.getElementById('telefono').value,
+        email: document.getElementById('email').value,
+        mensaje: document.getElementById('mensaje').value
+    };
+
+
+    const mensajeExito = document.getElementById('exito');
+
+    try {
+        const respuesta = await fetch('https://bella-causa-api.onrender.com/api/contacto', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(datosFormulario)
+        });
+
+        const resultado = await respuesta.json();
+
+        if (respuesta.ok) {
+            mensajeExito.textContent = "¡Gracias! Tus datos han sido guardados con éxito en la base de datos.";
+            mensajeExito.classList.remove('oculto');
+
+            document.getElementById('formulario-contacto').reset();
+        } else {
+            alert('Hubo un problema en el servidor: ' + resultado.mensaje);
+        }
+    } catch (error) {
+        console.error('Error de conexión:', error);
+        alert('No se pudo conectar con el servidor. Asegúrate de que tu terminal azul tenga corriendo el comando node server.js');
+    }
+});
+
+function enviarFormulario(evento) {
+    evento.preventDefault();
+
+    var alertaExito = document.getElementById("mensaje-exito");
+    alertaExito.style.display = "block";
+
+    document.getElementById("form-comunidad").reset();
+
+    setTimeout(function () {
+        alertaExito.style.display = "none";
+    }, 6000);
+}

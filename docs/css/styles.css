@@ -817,3 +817,50 @@ textarea {
   transform: scale(1.03); /* Aumenta ligeramente su tamaño */
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Agrega una sombra elegante */
 }
+
+/* Centra y ordena todo el formulario en una sola columna */
+#form-comunidad {
+  display: flex;
+  flex-direction: column;
+  max-width: 450px;
+  margin: 25px auto;
+  text-align: left;
+  gap: 8px;
+}
+
+/* Estilo para las etiquetas (Nombre, Teléfono, etc.) */
+#form-comunidad label {
+  font-weight: bold;
+  margin-top: 8px;
+  color: #222;
+}
+
+/* Hace que todas las cajas de texto tengan el mismo ancho y buen espacio interno */
+#form-comunidad input,
+#form-comunidad textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-family: inherit;
+  box-sizing: border-box; /* Evita que las cajas se salgan del borde */
+}
+
+/* Da estilo moderno al botón Enviar */
+#form-comunidad button {
+  margin-top: 15px;
+  padding: 12px 24px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#form-comunidad button:hover {
+  background-color: #555;
+}
