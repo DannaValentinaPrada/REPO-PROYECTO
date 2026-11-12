@@ -80,6 +80,7 @@ function dibujarMascotas() {
 }
 
 async function cargarMascotas() {
+    listaCasos.textContent = "Cargando mascotas... (la primera vez puede tardar un momento)"
     try {
         const respuesta = await fetch(API + "/api/mascotas");
         todasLasMascotas = await respuesta.json();
