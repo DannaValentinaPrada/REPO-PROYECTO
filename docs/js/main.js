@@ -203,42 +203,6 @@ function activarFiltroDesdeMenu(valorFiltro) {
     }
 }
 
-document.getElementById('formulario-contacto').addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    const datosFormulario = {
-        nombre: document.getElementById('nombre').value,
-        telefono: document.getElementById('telefono').value,
-        email: document.getElementById('email').value,
-        mensaje: document.getElementById('mensaje').value
-    };
-
-
-    const mensajeExito = document.getElementById('exito');
-
-    try {
-        const respuesta = await fetch('https://bella-causa-api.onrender.com/api/contacto', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(datosFormulario)
-        });
-
-        const resultado = await respuesta.json();
-
-        if (respuesta.ok) {
-            mensajeExito.textContent = "¡Gracias! Tus datos han sido guardados con éxito en la base de datos.";
-            mensajeExito.classList.remove('oculto');
-
-            document.getElementById('formulario-contacto').reset();
-        } else {
-            alert('Hubo un problema en el servidor: ' + resultado.mensaje);
-        }
-    } catch (error) {
-        console.error('Error de conexión:', error);
-        alert('No se pudo conectar con el servidor. Asegúrate de que tu terminal azul tenga corriendo el comando node server.js');
-    }
-});
-
 function enviarFormulario(evento) {
     evento.preventDefault();
 
