@@ -47,6 +47,9 @@ chatFormulario.addEventListener("submit", async function (evento) {
     chatEntrada.value = "";
 
     const burbujaRespuesta = agregarMensaje("Escribiendo...", "asistente");
+    const aviso = setTimeout(function () {
+        burbujaRespuesta.textContent = "Sigo pensando... a veces el asistente tarda un poco en despertar.";
+    }, 8000);
 
     try {
         const respuesta = await fetch(URL_CHAT, {
@@ -56,6 +59,7 @@ chatFormulario.addEventListener("submit", async function (evento) {
         });
 
         const datos = await respuesta.json();
+        clearTimeout(aviso);
         const textoRespuesta = datos.respuesta || "No pude responder en este momento.";
 
         burbujaRespuesta.textContent = textoRespuesta.replace(/\*\*/g, "");
@@ -64,6 +68,7 @@ chatFormulario.addEventListener("submit", async function (evento) {
             conversacion.push({ rol: "asistente", texto: textoRespuesta });
         }
     } catch (error) {
+        clearTimeout(aviso);
         burbujaRespuesta.textContent = "No pude conectarme con el asistente. Intenta de nuevo más tarde.";
     }
 });

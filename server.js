@@ -152,10 +152,24 @@ function limitarUso(req, res, next) {
 }
 
 // Llama a la IA y reintenta si Google está saturado
+const NIVEL_PENSAMIENTO = process.env.NIVEL_PENSAMIENTO;
+
 async function pedirRespuestaIA(instrucciones, contenido) {
   const intentosMaximos = 3;
   let respuesta;
   let datos;
+
+  const cuerpo = {
+    system_instruction: { parts: [{ text: instrucciones }] },
+    contents: contenido
+  };
+
+  // Si hay un nivel configurado, la IA razona menos y responde más rápido
+  if (NIVEL_PENSAMIENTO) {
+    cuerpo.generationConfig = {
+      thinkingConfig: { thinkingLevel: NIVEL_PENSAMIENTO }
+    };
+  }
 
   for (let intento = 1; intento <= intentosMaximos; intento++) {
     respuesta = await fetch(
@@ -166,10 +180,7 @@ async function pedirRespuestaIA(instrucciones, contenido) {
           'Content-Type': 'application/json',
           'x-goog-api-key': GEMINI_API_KEY
         },
-        body: JSON.stringify({
-          system_instruction: { parts: [{ text: instrucciones }] },
-          contents: contenido
-        })
+        body: JSON.stringify(cuerpo)
       }
     );
 
