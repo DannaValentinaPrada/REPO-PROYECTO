@@ -151,11 +151,11 @@ function limitarUso(req, res, next) {
   next();
 }
 
-// Llama a la IA y reintenta si Google está saturado
 const NIVEL_PENSAMIENTO = process.env.NIVEL_PENSAMIENTO;
+const MODELOS_IA = [MODELO_IA, process.env.MODELO_IA_RESPALDO].filter(Boolean);
 
 async function pedirRespuestaIA(instrucciones, contenido) {
-  const intentosMaximos = 3;
+  const intentosPorModelo = 2;
   let respuesta;
   let datos;
 
@@ -164,35 +164,39 @@ async function pedirRespuestaIA(instrucciones, contenido) {
     contents: contenido
   };
 
-  // Si hay un nivel configurado, la IA razona menos y responde más rápido
   if (NIVEL_PENSAMIENTO) {
     cuerpo.generationConfig = {
       thinkingConfig: { thinkingLevel: NIVEL_PENSAMIENTO }
     };
   }
 
-  for (let intento = 1; intento <= intentosMaximos; intento++) {
-    respuesta = await fetch(
-      'https://generativelanguage.googleapis.com/v1beta/models/' + MODELO_IA + ':generateContent',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-goog-api-key': GEMINI_API_KEY
-        },
-        body: JSON.stringify(cuerpo)
+  for (const modelo of MODELOS_IA) {
+    for (let intento = 1; intento <= intentosPorModelo; intento++) {
+      respuesta = await fetch(
+        'https://generativelanguage.googleapis.com/v1beta/models/' + modelo + ':generateContent',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-goog-api-key': GEMINI_API_KEY
+          },
+          body: JSON.stringify(cuerpo),
+          signal: AbortSignal.timeout(25000)
+        }
+      );
+
+      datos = await respuesta.json();
+
+      // Si no es un problema de saturación, devolvemos lo que haya (bueno o malo)
+      if (respuesta.status !== 503) {
+        return { respuesta: respuesta, datos: datos };
       }
-    );
 
-    datos = await respuesta.json();
-
-    if (respuesta.status !== 503) {
-      break;
+      console.log('Modelo saturado:', modelo, '(intento ' + intento + ')');
+      await new Promise(function (resolver) {
+        setTimeout(resolver, 1000);
+      });
     }
-
-    await new Promise(function (resolver) {
-      setTimeout(resolver, intento * 1500);
-    });
   }
 
   return { respuesta: respuesta, datos: datos };
