@@ -1,8 +1,4 @@
 const URL_CHAT = "https://bella-causa-api.onrender.com/api/chat";
-// Despierta el servidor de Render silenciosamente apenas carga la página
-// Despierta tu propio servidor de Render usando una ruta válida
-fetch("https://onrender.com").catch(() => {});
-
 
 const chatBoton = document.getElementById("chat-boton");
 const chatVentana = document.getElementById("chat-ventana");
