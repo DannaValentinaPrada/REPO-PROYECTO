@@ -156,8 +156,7 @@ const MODELOS_IA = [MODELO_IA, process.env.MODELO_IA_RESPALDO].filter(Boolean);
 
 async function pedirRespuestaIA(instrucciones, contenido) {
   const intentosPorModelo = 2;
-  let respuesta;
-  let datos;
+  let ultimoResultado = null;
 
   const cuerpo = {
     system_instruction: { parts: [{ text: instrucciones }] },
@@ -172,34 +171,47 @@ async function pedirRespuestaIA(instrucciones, contenido) {
 
   for (const modelo of MODELOS_IA) {
     for (let intento = 1; intento <= intentosPorModelo; intento++) {
-      respuesta = await fetch(
-        'https://generativelanguage.googleapis.com/v1beta/models/' + modelo + ':generateContent',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'x-goog-api-key': GEMINI_API_KEY
-          },
-          body: JSON.stringify(cuerpo),
-          signal: AbortSignal.timeout(25000)
+      try {
+        const respuesta = await fetch(
+          'https://generativelanguage.googleapis.com/v1beta/models/' + modelo + ':generateContent',
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'x-goog-api-key': GEMINI_API_KEY
+            },
+            body: JSON.stringify(cuerpo),
+            signal: AbortSignal.timeout(15000)
+          }
+        );
+
+        const datos = await respuesta.json();
+        ultimoResultado = { respuesta: respuesta, datos: datos };
+
+        if (respuesta.ok) {
+          return ultimoResultado;
         }
-      );
 
-      datos = await respuesta.json();
+        console.log('La IA respondió con error', respuesta.status, 'usando', modelo);
 
-      // Si no es un problema de saturación, devolvemos lo que haya (bueno o malo)
-      if (respuesta.status !== 503) {
-        return { respuesta: respuesta, datos: datos };
+        // Solo reintentamos el mismo modelo si estaba saturado (503)
+        if (respuesta.status !== 503) {
+          break;
+        }
+      } catch (error) {
+        console.log('Falló la consulta a', modelo, '(intento ' + intento + '):', error.message);
       }
 
-      console.log('Modelo saturado:', modelo, '(intento ' + intento + ')');
       await new Promise(function (resolver) {
         setTimeout(resolver, 1000);
       });
     }
   }
 
-  return { respuesta: respuesta, datos: datos };
+  return ultimoResultado || {
+    respuesta: { ok: false, status: 504 },
+    datos: { error: 'Sin respuesta de la IA' }
+  };
 }
 
 app.post('/api/chat', limitarUso, async (req, res) => {
