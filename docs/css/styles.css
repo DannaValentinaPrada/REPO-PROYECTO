@@ -995,3 +995,21 @@ textarea {
 .contacto-directo svg {
     flex-shrink: 0;
 }
+
+.ayuda-adopcion {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.ayuda-adopcion a {
+    color: var(--durazno);
+    font-weight: bold;
+}
+
+section[id] {
+    scroll-margin-top: 80px;
+}
+
+.contacto-directo {
+    scroll-margin-top: 90px;
+}
