@@ -948,3 +948,50 @@ textarea {
 .lista-casos {
     align-items: flex-start;
 }
+
+.contacto-directo {
+    max-width: 520px;
+    margin: 0 auto 30px;
+    background-color: var(--blanco);
+    color: var(--oscuro);
+    border-radius: 20px;
+    padding: 24px;
+    text-align: left;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.contacto-directo h3 {
+    margin: 0 0 6px;
+    color: var(--ciruela);
+}
+
+.contacto-directo p {
+    margin: 0 0 14px;
+}
+
+.contacto-directo ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.contacto-directo a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--ciruela);
+    text-decoration: none;
+    font-weight: bold;
+    word-break: break-word;
+}
+
+.contacto-directo a:hover {
+    color: var(--rosa);
+}
+
+.contacto-directo svg {
+    flex-shrink: 0;
+}
