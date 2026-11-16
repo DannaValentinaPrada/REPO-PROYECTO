@@ -239,7 +239,7 @@ app.post('/api/chat', limitarUso, async (req, res) => {
 
     const mascotas = await Mascota.find().select('nombre tipo estado historia');
     const listaMascotas = mascotas.map(function (m) {
-      return '- ' + m.nombre + ' (' + m.tipo + ', ' + m.estado + '): ' + (m.historia || '').slice(0, 200);
+      return '- ' + m.nombre + ' (' + m.tipo + ', ' + m.estado + '): ' + (m.historia || '').slice(0, 600);
     }).join('\n');
 
     const instrucciones = `Eres el asistente virtual de Bella Causa, una página web de labor social que visibiliza rescates de animales abandonados y también comparte consejos de belleza consciente.
