@@ -930,3 +930,10 @@ textarea {
     margin: 28px auto 0;
     font-size: 14px;
 }
+
+.fundacion img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 14px;
+}
