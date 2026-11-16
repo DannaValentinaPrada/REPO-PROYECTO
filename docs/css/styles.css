@@ -944,3 +944,7 @@ textarea {
     text-align: center;
     opacity: 0.85;
 }
+
+.lista-casos {
+    align-items: flex-start;
+}
