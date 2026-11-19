@@ -4,6 +4,8 @@ import Carrusel from "./components/Carrusel";
 import Hero from "./components/Hero";
 import Propuesta from "./components/Propuesta";
 import Mascotas from "./components/Mascotas";
+import Fundaciones from "./components/Fundaciones";
+import Contacto from "./components/Contacto";
 import Footer from "./components/Footer";
 
 function App() {
@@ -17,6 +19,8 @@ function App() {
         <Hero />
         <Propuesta />
         <Mascotas filtro={filtro} alCambiarFiltro={setFiltro} />
+        <Fundaciones />
+        <Contacto />
       </main>
       <Footer />
     </>
