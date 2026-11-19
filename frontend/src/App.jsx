@@ -5,6 +5,7 @@ import Hero from "./components/Hero";
 import Propuesta from "./components/Propuesta";
 import Mascotas from "./components/Mascotas";
 import Fundaciones from "./components/Fundaciones";
+import Belleza from "./components/Belleza";
 import Contacto from "./components/Contacto";
 import Footer from "./components/Footer";
 
@@ -20,6 +21,7 @@ function App() {
         <Propuesta />
         <Mascotas filtro={filtro} alCambiarFiltro={setFiltro} />
         <Fundaciones />
+        <Belleza />
         <Contacto />
       </main>
       <Footer />
