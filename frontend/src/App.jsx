@@ -8,6 +8,7 @@ import Fundaciones from "./components/Fundaciones";
 import Belleza from "./components/Belleza";
 import Contacto from "./components/Contacto";
 import Footer from "./components/Footer";
+import Chat from "./components/Chat";
 
 function App() {
   const [filtro, setFiltro] = useState("todos");
@@ -25,6 +26,7 @@ function App() {
         <Contacto />
       </main>
       <Footer />
+      <Chat />
     </>
   );
 }
