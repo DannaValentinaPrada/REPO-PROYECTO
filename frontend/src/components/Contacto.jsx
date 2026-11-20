@@ -28,7 +28,7 @@ function Contacto() {
 
       setDatos(datosVacios);
       setEstado("exito");
-    } catch (error) {
+    } catch {
       setEstado("error");
     }
   }

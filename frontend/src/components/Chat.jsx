@@ -69,7 +69,7 @@ function Chat() {
         ...nuevos,
         { rol: "asistente", texto: textoRespuesta, enviar: respuesta.ok }
       ]);
-    } catch (error) {
+    } catch {
       setMensajes([
         ...nuevos,
         {

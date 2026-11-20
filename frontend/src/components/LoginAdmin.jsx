@@ -20,7 +20,7 @@ function LoginAdmin({ alEntrar }) {
       } else {
         setMensaje("Clave incorrecta. Intenta de nuevo.");
       }
-    } catch (error) {
+    } catch {
       setMensaje("No se pudo conectar con el servidor.");
     }
   }

@@ -37,17 +37,23 @@ function PanelAdmin({ clave, alSalir }) {
   const [foto, setFoto] = useState(null);
   const [mensaje, setMensaje] = useState("");
 
+  async function pedirMascotas() {
+    const respuesta = await fetch(API + "/api/mascotas");
+    return await respuesta.json();
+  }
+
   async function cargarLista() {
     try {
-      const respuesta = await fetch(API + "/api/mascotas");
-      setMascotas(await respuesta.json());
-    } catch (error) {
+      setMascotas(await pedirMascotas());
+    } catch {
       setMensaje("No se pudo cargar la lista.");
     }
   }
 
   useEffect(() => {
-    cargarLista();
+    pedirMascotas()
+      .then(setMascotas)
+      .catch(() => setMensaje("No se pudo cargar la lista."));
   }, []);
 
   function cambiar(evento) {
@@ -82,7 +88,7 @@ function PanelAdmin({ clave, alSalir }) {
       } else {
         setMensaje("No se pudo guardar. Intenta de nuevo.");
       }
-    } catch (error) {
+    } catch {
       setMensaje("Ocurrió un error. Intenta de nuevo.");
     }
   }
@@ -108,7 +114,7 @@ function PanelAdmin({ clave, alSalir }) {
       } else {
         window.alert("No se pudo eliminar. Intenta de nuevo.");
       }
-    } catch (error) {
+    } catch {
       window.alert("No se pudo conectar con el servidor.");
     }
   }

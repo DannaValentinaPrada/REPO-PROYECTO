@@ -24,7 +24,7 @@ function Mascotas({ filtro, alCambiarFiltro }) {
         const datos = await respuesta.json();
         setMascotas(datos);
         setEstado("listo");
-      } catch (error) {
+      } catch {
         setEstado("error");
       }
     }
