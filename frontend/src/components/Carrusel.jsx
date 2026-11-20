@@ -13,7 +13,7 @@ const slides = [
   },
   {
     imagen: "./assets/PROTESTA_PACIFICA.jpg",
-    alt: "Personas en una marcha pacifica",
+    alt: "Personas en una marcha pacífica",
     frase: '"Elegir productos cruelty-free también es un acto de amor hacia los animales"'
   },
   {
